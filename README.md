@@ -2,97 +2,84 @@
 Real-world VPS troubleshooting, snapshots, and rollback-first change management.
 # Snapshot-Based Change Management on Production VPS
 
-## Context
+# VPS Incident Playbooks & Change Management
 
-Live VPS systems rarely fail because of hardware.
-They fail during **changes**:
-- DNS updates
-- SSL renewals
-- Docker reconfigurations
-- Firewall rule edits
+This repository documents **real-world VPS operations**, focusing on **safe change management**, **incident recovery**, and **rollback-first workflows** on live Linux servers.
 
-This playbook documents how to make those changes **safe and reversible**.
+The goal is simple:
+
+> Make risky changes reversible.
 
 ---
 
-## Principle: Snapshot First
+## Why This Exists
 
-Before touching:
-- Docker
-- DNS
-- SSL
-- Firewall rules
+Most outages aren’t caused by complex bugs.
+They happen because someone:
+- Changed DNS without a rollback
+- Touched Docker or firewall rules live
+- Assumed SSL changes were “safe”
 
-Take a full VPS snapshot.
-
-This turns:
-> “I hope this works”
-
-into:
-> “I can undo this in minutes.”
+This repo documents how I **snapshot, change, verify, and recover** on production VPS systems.
 
 ---
 
-## Why Snapshots Matter
+## Snapshot-Based Change Management (Example)
 
-Snapshots provide:
+Before applying any of the following on a live VPS:
+- DNS changes
+- Docker Compose updates
+- SSL / cert fixes
+- Firewall or IP blocking rules
+
+I take a full snapshot of the system.
+
+This allows:
 - Instant rollback
-- Confidence during debugging
-- Freedom to iterate safely
+- Zero panic during outages
+- Confident troubleshooting
 
-They remove pressure during outages.
+### Example Snapshot Set
 
----
+![VPS Snapshots](images/vultr-snapshots.png)
 
-## Example Scenario
-
-### Change Required
-- DNS provider updated URLs
-- Docker services required updates
-- SSL certificates needed correction
-- TOR IP ranges blocked at firewall level
-
-### Risk
-- Service downtime
-- Lockout
-- Cert misconfiguration
-
-### Mitigation
-- Snapshot taken before each major phase
-- Changes applied incrementally
-- Rollback available at every step
+**What this shows:**
+- Discrete snapshots taken before major changes
+- Clear naming for traceability
+- Multiple rollback points during iterative fixes
 
 ---
 
-## Snapshot Naming Strategy
+## Typical Workflow
 
-Use names that describe the **intent**, not the outcome.
+1. Identify the change or fault
+2. Take a VPS snapshot
+3. Apply one scoped change
+4. Verify service health
+5. Continue or roll back instantly if needed
 
-Good:
-- `dns-change-pre-docker`
-- `ssl-cert-fix`
-- `tor-ips-blocked`
-
-Bad:
-- `backup1`
-- `test`
-- `final-final-really-final`
+No “hope it works” deployments.
 
 ---
 
-## Operational Benefits
+## Covered Topics (Growing)
 
-- Faster incident resolution
-- Reduced stress during outages
-- Easier root-cause analysis
-- Professional-grade change hygiene
+- Snapshot-based rollback strategy
+- DNS & reverse proxy changes
+- Docker Compose failure recovery
+- SSL / cert troubleshooting
+- Firewall and IP block rules
+- Production-safe iteration
 
 ---
 
-## Takeaway
+## Philosophy
 
-If a change can break production,
-it deserves a snapshot.
+- Production systems deserve respect
+- Speed comes from reversibility
+- Snapshots are cheaper than downtime
 
-Snapshots are not paranoia.
-They are operational maturity.
+This repo reflects **how I actually work on live systems**, not lab examples.
+
+
+
