@@ -1,4 +1,6 @@
-![Production VPS Snapshots](VPS-Vultr-SnapShots-Edited-with-Email.png)
+<p align="center">
+  <img src="VPS-Vultr-SnapShots-Edited-with-Email.png" alt="VPS-Vultr-SnapShots-Edited-with-Email.png" width="900">
+</p>
 
 # production-vps-change-management
 Real-world VPS troubleshooting, snapshots, and rollback-first change management.
