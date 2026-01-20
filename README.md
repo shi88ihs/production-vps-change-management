@@ -1,3 +1,5 @@
+![Production VPS Snapshots](VPS-Vultr-SnapShots-Edited-with-Email.png)
+
 # production-vps-change-management
 Real-world VPS troubleshooting, snapshots, and rollback-first change management.
 # Snapshot-Based Change Management on Production VPS
