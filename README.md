@@ -1,4 +1,4 @@
-<p align="center">
+<p align="left">
   <img src="VPS-Vultr-SnapShots-Edited-with-Email.png" alt="VPS-Vultr-SnapShots-Edited-with-Email.png" width="900">
 </p>
 
